@@ -6,19 +6,36 @@ body {
     background-color: #f4f4f4; /* Fond général clair */
     color: #eee; /* Texte clair */
 }
+
+
 .testrgb {
     margin: o auto;
     padding: 2em;
     width: auto;
 }
-.testrgb::after{
+.testrgb::after, .testrgb::before{
     content: '';
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: conic-gradient(#2cc1e1, );
+    background-image: conic-gradient(#2cc1e1, #52f7b5);
     translate: -50% -50%;
     z-index: -1;
+    animation: 3s spin linear infinite;
+}
+.testrgb::before{
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+@keyframe spin{
+    from{
+        --angle: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
+
     
 
 header {
