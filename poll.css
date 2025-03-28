@@ -1,0 +1,40 @@
+body {
+    width : 100vw; 
+    height : 100vh;
+    display :flex;
+    margin : 0;
+}
+.side {
+    min-width:10%;
+    max-width: 100%;
+    width : 50%; 
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+}
+#red {
+    background-color: red
+}
+#blue {
+    background-color: blue
+}
+#score {
+    position : absolute;
+    font-size: 56px;
+    margin : 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 1.25s;
+}
+#draggable {
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    border: 2px solid #000;
+    position: absolute;
+    cursor: pointer;
+    border-radius: 50%;
+}

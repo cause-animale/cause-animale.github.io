@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondage</title>
+    <link rel="stylesheet" href="poll.css">
+</head>
+<body>
+    <div onclick=incrementRed() id="red" class="side"></div>
+    <p id="score">0 0</p>
+    <div onclick=incrementBlue() id="blue" class="side"></div>
+    <div id="draggable" draggable="true"></div>
+
+    <script defer>
+        let voices = [0,0]
+        const red = document.getElementById("red")
+        const blue = document.getElementById("blue")
+        const score = document.getElementById("score")
+        const clamp = (min, max, num) => Math.min(Math.max(num, min), max)
+        function incrementRed(){
+            voices[0]++;
+            updateDisplay();
+        }
+        function incrementBlue(){
+            voices[1]++;
+            updateDisplay()
+        }
+        function updateDisplay(){
+            red.style.width = voices[0]/(voices[0]+voices[1])*100 + '%'
+            blue.style.width = voices[1]/(voices[0]+voices[1])*100 + '%'
+            score.innerText = `${voices[0]} ${voices[1]}`;
+            score.style.left = clamp(10,90, voices[0]/(voices[0]+voices[1])*100) + '%'
+        }
+    
+        
+        dragElement(document.getElementById("draggable"));
+
+        function dragElement(elmnt) {
+            let actualX = 0, actualY = 0, startX = 0, startY = 0;
+            elmnt.onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+
+                startX = e.clientX;
+                startY = e.clientY;
+
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+
+                actualX = startX - e.clientX;
+                actualY = startY - e.clientY;
+                startX = e.clientX;
+                startY = e.clientY;
+
+                elmnt.style.left = (elmnt.offsetLeft - actualX) + "px";
+                elmnt.style.top = (elmnt.offsetTop - actualY) + "px"; 
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+</html>
