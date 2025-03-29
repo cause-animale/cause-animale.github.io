@@ -3,37 +3,52 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Fond général clair */
+    background-color: #1c1f2b; /* Fond général clair */
     color: #eee; /* Texte clair */
 }
 
 
-.testrgb {
-    margin: o auto;
-    padding: 2em;
-    width: auto;
+.card{
+  margin: 0 auto;
+  padding: 2em;
+  width: 1500px;
+  background: #1c1f2b;
+  text-align: left;
+  border-radius: 10px;
+  position: relative;
 }
-.testrgb::after, .testrgb::before{
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-image: conic-gradient(#2cc1e1, #52f7b5);
-    translate: -50% -50%;
-    z-index: -1;
-    animation: 3s spin linear infinite;
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
-.testrgb::before{
-    filter: blur(1.5rem);
-    opacity: 0.5;
+
+.card::after, .card::before{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #2cc1e1, #52f7b5);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
 }
-@keyframe spin{
-    from{
-        --angle: 0deg;
-    }
-    to{
-        --angle: 360deg;
-    }
+.card::before{
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+@keyframes spin{
+  from{
+    --angle: 0deg;
+  }
+  to{
+    --angle: 360deg;
+  }
 }
 
     
@@ -42,7 +57,7 @@ header {
     background: linear-gradient(to right, #1f3a4c, #4c6a85); /* Dégradé bleu foncé vers bleu glacial */
     color: white;
     text-align: center;
-    padding: 3em 0;
+    padding: 3em 1;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre plus marquée */
 }
 
@@ -54,19 +69,19 @@ header h1 {
 
 header p {
     font-size: 1.2em;
-    margin-top: 1em;
+    margin-top: 2em;
     opacity: 0.8; /* Légèrement transparent */
 }
 
 /* Mise en page principale */
 main {
     padding: 3em 2em;
-    background-color: #f0f2f5; /* Fond très clair pour les sections principales */
+    background-color: #2d3e50; /* Fond très clair pour les sections principales */
 }
 
 section {
     background: linear-gradient(145deg, #2d3e50, #4c5c73); /* Dégradé métallisé gris bleu */
-    margin-bottom: 2em;
+    margin-bottom: 0.5em;
     padding: 2.5em;
     border-radius: 8px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre */
@@ -170,4 +185,3 @@ a:hover {
         font-size: 0.9em;
     }
 }
-
